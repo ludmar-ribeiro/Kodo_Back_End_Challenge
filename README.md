@@ -132,7 +132,12 @@ Wisely chosen tools, techniques and/or frameworks
 Submission Instructions
 
 Fork this project
+
 Complete the task and push on your own fork. (Nice, atomic and iterative commits are welcome)
+
 Include instructions of how we can make it to work
+
 Submit a pull request
+
 Send an email to Alfie@learnkodo.com for us to review your solution
+
