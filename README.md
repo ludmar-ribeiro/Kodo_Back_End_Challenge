@@ -16,6 +16,7 @@ The year is 2113 and robots are now an integral part of life. The Kodo Corporati
 When this time comes, all Kodo robots must retire to the Kodo Robot DayCare Centre!
 
 Taking care of a malfunction robot is a time-consuming task and in our busy society not every person has the time to do so. That’s why we are building the Kodo Robot's daycare centre.
+
 The Kodo robot's daycare centres are subsidised by the government and in order for them to benefit from this program, they need to give government inspectors access to their database of guests.
 
 The inspectors API
@@ -35,25 +36,41 @@ Example
 The Kodo XX1 is already in our system and has the following attributes:
 
 size: 150cm
+
 weight: 12kg
+
 status: good conditions
+
 color: white
+
 age: 107years
+
 The inspector checks the Kodo robot and decides to update his attributes and sends the following information:
 
 color: dirty cream white
+
 age: 124years
+
 number of eyes: 1
+
 number of antenna: 3
+
 The Kodo XX1 now has these attributes:
 
 size: 150cm
+
 weight: 12kg
+
 status: good conditions
+
 color: dirty cream white
+
 age: 124years
+
 number of eyes: 1
+
 number of antennas: 3
+
 Be aware that the attributes are not predefined and can be anything on both sides: key and value.
 
 [Show] get a Kodo robot's actual attributes
@@ -61,14 +78,21 @@ Be aware that the attributes are not predefined and can be anything on both side
 The inspector wants to know about the actual attributes of a Kodo robot
 
 Example
+
 The inspector asks for the Kodo XX1 and the system responses with the following information:
 
 size: 150cm
+
 weight: 12kg
+
 status: good conditions
+
 color: dirty cream white
+
 age: 124years
+
 number of eyes: 1
+
 number of antennas: 3
 
 [Index] get a list of all the Kodo robot's in our database
@@ -81,14 +105,19 @@ The inspector makes the call and the system responses with the following informa
 1
 
 name: XX1
+
 last_update: 2113-12-01
+
 2
 
 name: XX2
+
 last_update: 2113-12-03
+
 3
 
 name: XX3
+
 last_update: 2113-12-12
 
 [History] get a Kodo robot's attributes changes
@@ -101,21 +130,35 @@ The inspector asks for the history of the Kodo XX1, the system responses with th
 2112-11-28 10:23:24
 
 type: create
+
 changes:
+
 size: [] -> [150cm]
+
 weight: [] -> [12kg]
+
 status: [] -> [good conditions]
+
 color: [] -> [white]
+
 age: [] -> [107years]
+
 2113-12-02 16:30:11
 
 type: update
+
 changes:
+
 color: [white] -> [dirty cream white]
+
 age: [123years] -> [124years]
+
 number of eyes: [] -> [1]
+
 number of antennas: [] -> [3]
+
 The API details
+
 You can make your own decision on the details of your API. You can define the URLs, request methods, headers, response types, response formats, etc.
 
 You don't even have to follow the information structures showed in the examples above. Use whatever structure you think is best, however just make sure that your proposition includes all the information in the examples.
