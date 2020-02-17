@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.domain.robot.events.producers;
 
-import com.lud.challenge.kodo.commons.entities.Robot;
+import com.lud.challenge.kodo.domain.robot.entities.Robot;
 
 import java.util.Map;
 

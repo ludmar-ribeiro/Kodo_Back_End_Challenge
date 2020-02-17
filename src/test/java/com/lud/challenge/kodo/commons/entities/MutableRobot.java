@@ -1,5 +1,6 @@
 package com.lud.challenge.kodo.commons.entities;
 
+import com.lud.challenge.kodo.domain.robot.entities.Robot;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

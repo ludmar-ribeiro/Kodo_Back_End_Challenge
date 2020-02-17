@@ -1,7 +1,7 @@
 package com.lud.challenge.kodo.resources.spring.events.listeners;
 
 import com.lud.challenge.kodo.domain.robot.events.consumers.RobotEventConsumer;
-import com.lud.challenge.kodo.commons.entities.Robot;
+import com.lud.challenge.kodo.domain.robot.entities.Robot;
 import com.lud.challenge.kodo.resources.spring.events.entities.RobotCreationEvent;
 import com.lud.challenge.kodo.resources.spring.events.publishers.data.RobotSpringEventPublisherTestData;
 import static org.junit.Assert.*;

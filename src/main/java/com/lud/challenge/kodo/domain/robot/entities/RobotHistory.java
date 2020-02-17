@@ -1,4 +1,4 @@
-package com.lud.challenge.kodo.commons.entities;
+package com.lud.challenge.kodo.domain.robot.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

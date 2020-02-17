@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.resources.spring.events.entities;
 
-import com.lud.challenge.kodo.commons.entities.Robot;
+import com.lud.challenge.kodo.domain.robot.entities.Robot;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

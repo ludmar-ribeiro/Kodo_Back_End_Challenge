@@ -1,5 +1,7 @@
 package com.lud.challenge.kodo.commons.entities;
 
+import com.lud.challenge.kodo.domain.robot.entities.RobotHistory;
+import com.lud.challenge.kodo.domain.robot.entities.RobotHistoryType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.lud.challenge.kodo.commons.entities.RobotHistory.Change;
+import static com.lud.challenge.kodo.domain.robot.entities.RobotHistory.Change;
 
 @Getter
 @Setter

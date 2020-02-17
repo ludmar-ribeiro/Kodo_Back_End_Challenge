@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.resources.spring.events.publishers;
 
-import com.lud.challenge.kodo.commons.entities.Robot;
+import com.lud.challenge.kodo.domain.robot.entities.Robot;
 import com.lud.challenge.kodo.domain.robot.events.producers.RobotEventProducer;
 import com.lud.challenge.kodo.resources.spring.events.entities.RobotCreationEvent;
 import com.lud.challenge.kodo.resources.spring.events.entities.RobotUpdateEvent;
