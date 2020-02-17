@@ -10,7 +10,7 @@ import java.util.UUID;
 public class RobotNotFoundException extends Exception {
 
     public RobotNotFoundException(UUID id) {
-        super(String.format("There's no robot for the given id {0}", id));
+        super(String.format("There's no robot for the given id %s", id));
         this.id = id;
     }
 

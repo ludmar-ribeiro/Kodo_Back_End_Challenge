@@ -3,6 +3,7 @@ package com.lud.challenge.kodo.domain.robot.services;
 import com.lud.challenge.kodo.domain.robot.entities.Robot;
 import com.lud.challenge.kodo.domain.robot.exceptions.RobotNotFoundException;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -39,4 +40,11 @@ public interface RobotService {
      * @throws RobotNotFoundException when the given id doesn't represent any existent robot
      */
     Robot get(UUID id) throws RobotNotFoundException;
+
+    /**
+     * Gets all robots
+     *
+     * @return List of robots
+     */
+    List<Robot> getAll();
 }

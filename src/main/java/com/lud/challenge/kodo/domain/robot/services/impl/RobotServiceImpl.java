@@ -7,6 +7,7 @@ import com.lud.challenge.kodo.domain.robot.services.RobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -70,5 +71,15 @@ public class RobotServiceImpl implements RobotService {
         }
 
         return robot;
+    }
+
+    /**
+     * Gets all robots
+     *
+     * @return List of robots
+     */
+    @Override
+    public List<Robot> getAll() {
+        return repository.getAll();
     }
 }

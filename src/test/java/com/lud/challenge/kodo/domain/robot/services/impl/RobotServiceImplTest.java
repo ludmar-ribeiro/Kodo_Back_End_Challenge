@@ -1,6 +1,7 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
 
+import com.lud.challenge.kodo.domain.robot.entities.MutableRobot;
 import com.lud.challenge.kodo.domain.robot.entities.Robot;
 import com.lud.challenge.kodo.domain.robot.exceptions.RobotNotFoundException;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;
@@ -17,7 +18,10 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
@@ -84,21 +88,22 @@ public class RobotServiceImplTest {
     public void shouldUpdateExistentObject() throws RobotNotFoundException {
         Robot input = testData.getRobotUpdateTestInput().get(0).toDomain();
         Robot robotFromStorage = Robot.of(testData.getRobotCreationTestInput().toDomain());
+        UUID id = robotFromStorage.getId();
         Robot expectedOutput = robotFromStorage.update(input.getAttributes());
 
-        when(repository.get(input.getId())).thenReturn(robotFromStorage);
+        when(repository.get(id)).thenReturn(robotFromStorage);
 
         ArgumentCaptor<Robot> captor = ArgumentCaptor.forClass(Robot.class);
         when(repository.save(captor.capture())).thenReturn(expectedOutput);
 
         LocalDateTime executionTime = LocalDateTime.now();
 
-        service.update(input.getId(), input.getAttributes());
+        service.update(id, input.getAttributes());
 
         assertNotNull(captor.getValue());
         Robot output = captor.getValue();
 
-        assertEquals(input.getId(), output.getId());
+        assertEquals(id, output.getId());
         assertEquals(robotFromStorage.getName(), output.getName());
 
         input.getAttributes().keySet().forEach(key -> {
@@ -142,8 +147,8 @@ public class RobotServiceImplTest {
      */
     @Test
     public void shouldGetExistentObject() throws RobotNotFoundException {
-        UUID id = UUID.randomUUID();
         Robot robotFromStorage = Robot.of(testData.getRobotCreationTestInput().toDomain());
+        UUID id = robotFromStorage.getId();
 
         when(repository.get(id)).thenReturn(robotFromStorage);
 
@@ -169,5 +174,38 @@ public class RobotServiceImplTest {
         when(repository.get(id)).thenReturn(null);
 
         service.get(id);
+    }
+
+    /**
+     * Given the fact that there's no robot on storage
+     * When get all method called
+     * Then a empty list of robot should be returned
+     */
+    @Test
+    public void shouldReturnNoRobotWhenGetAll() {
+        when(repository.getAll()).thenReturn(Collections.emptyList());
+
+        List<Robot> output = service.getAll();
+
+        assertTrue(output.isEmpty());
+    }
+
+    /**
+     * Given the fact that there's some robots on storage
+     * When get all method called
+     * Then a list of robot should be returned
+     */
+    @Test
+    public void shouldReturnAllObjects() {
+        List<Robot> robotsFromStorage = testData.getRobotGetAllTestStorage()
+                .stream()
+                .map(MutableRobot::toDomain)
+                .collect(Collectors.toList());
+
+        when(repository.getAll()).thenReturn(robotsFromStorage);
+
+        List<Robot> output = service.getAll();
+
+        assertEquals(3, output.size());
     }
 }
