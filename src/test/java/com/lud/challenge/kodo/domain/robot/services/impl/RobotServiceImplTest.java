@@ -3,6 +3,7 @@ package com.lud.challenge.kodo.domain.robot.services.impl;
 
 import com.lud.challenge.kodo.domain.robot.entities.MutableRobot;
 import com.lud.challenge.kodo.domain.robot.entities.Robot;
+import com.lud.challenge.kodo.domain.robot.events.producers.RobotEventProducer;
 import com.lud.challenge.kodo.domain.robot.exceptions.RobotNotFoundException;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;
 import com.lud.challenge.kodo.domain.robot.services.impl.data.RobotServiceImplTestData;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -22,12 +22,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Unit Test for RobotServiceImpl
@@ -47,6 +47,9 @@ public class RobotServiceImplTest {
     private RobotRepository repository;
 
     @Autowired
+    private RobotEventProducer eventProducer;
+
+    @Autowired
     private RobotServiceImpl service;
 
     @Autowired
@@ -54,7 +57,7 @@ public class RobotServiceImplTest {
 
     @BeforeEach
     public void beforeEach() {
-        reset(repository);
+        reset(repository, eventProducer);
     }
 
     /**
@@ -85,6 +88,35 @@ public class RobotServiceImplTest {
                 executionTime.equals(output.getCreatedAt())
                         || executionTime.isBefore(output.getCreatedAt())
         );
+    }
+
+    /**
+     * Given a robot with name and attributes
+     * When create method called
+     * Then a robot creation event should be published
+     */
+    @Test
+    public void shouldPublishEventAfterCreateNewObject() {
+        Robot input = testData.getRobotCreationTestInput().toDomain();
+        Robot expectedOutput = Robot.of(input);
+
+        ArgumentCaptor<Robot> captor = ArgumentCaptor.forClass(Robot.class);
+
+        when(repository.save(captor.capture())).thenReturn(expectedOutput);
+
+        service.create(input);
+
+        assertNotNull(captor.getValue());
+        Robot output = captor.getValue();
+
+        verify(eventProducer).publishRobotCreatedEvent(captor.capture());
+
+        Robot createdRobotEvent = captor.getValue();
+
+        assertEquals(input.getName(), createdRobotEvent.getName());
+        assertEquals(output.getName(), createdRobotEvent.getName());
+        assertEquals(expectedOutput, createdRobotEvent);
+        assertEquals(2, captor.getAllValues().size());
     }
 
     /**
@@ -129,6 +161,49 @@ public class RobotServiceImplTest {
                 executionTime.equals(output.getUpdatedAt())
                         || executionTime.isBefore(output.getUpdatedAt())
         );
+    }
+
+    /**
+     * Given a valid robot id and some attributes
+     * When update method called
+     * Then a robot update event should be published
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void shouldPublicEventAfterUpdateExistentObject() throws RobotNotFoundException {
+        Robot input = testData.getRobotUpdateTestInput().get(0).toDomain();
+        Robot robotFromStorage = Robot.of(testData.getRobotCreationTestInput().toDomain());
+        UUID id = robotFromStorage.getId();
+        Robot expectedOutput = robotFromStorage.update(input.getAttributes());
+
+        when(repository.get(id)).thenReturn(robotFromStorage);
+
+        ArgumentCaptor<Robot> captor = ArgumentCaptor.forClass(Robot.class);
+        when(repository.save(captor.capture())).thenReturn(expectedOutput);
+
+        ArgumentCaptor<Map<String, Object>> oldAttributesCaptor = ArgumentCaptor.forClass(Map.class);
+        ArgumentCaptor<Map<String, Object>> newAttributesCaptor = ArgumentCaptor.forClass(Map.class);
+
+        LocalDateTime executionTime = LocalDateTime.now();
+
+        service.update(id, input.getAttributes());
+
+        assertNotNull(captor.getValue());
+        Robot output = captor.getValue();
+
+        verify(eventProducer).publishRobotUpdatedEvent(
+                captor.capture(),
+                oldAttributesCaptor.capture(),
+                newAttributesCaptor.capture()
+        );
+
+        Robot robotUpdateEvent = captor.getValue();
+
+        assertEquals(2, captor.getAllValues().size());
+        assertEquals(output.getName(), robotUpdateEvent.getName());
+        assertEquals(expectedOutput, robotUpdateEvent);
+        assertEquals(robotFromStorage.getAttributes(), oldAttributesCaptor.getValue());
+        assertEquals(input.getAttributes(), newAttributesCaptor.getValue());
     }
 
     /**

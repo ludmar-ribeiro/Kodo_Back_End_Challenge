@@ -1,6 +1,7 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
 import com.lud.challenge.kodo.domain.robot.entities.Robot;
+import com.lud.challenge.kodo.domain.robot.events.producers.RobotEventProducer;
 import com.lud.challenge.kodo.domain.robot.exceptions.RobotNotFoundException;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;
 import com.lud.challenge.kodo.domain.robot.services.RobotService;
@@ -27,6 +28,12 @@ public class RobotServiceImpl implements RobotService {
     private RobotRepository repository;
 
     /**
+     * Robot event producer
+     */
+    @Autowired
+    private RobotEventProducer eventProducer;
+
+    /**
      * Creates a new Robot from a base robot object
      *
      * @see com.lud.challenge.kodo.domain.robot.services.RobotService#create(Robot)
@@ -35,7 +42,11 @@ public class RobotServiceImpl implements RobotService {
      */
     @Override
     public Robot create(Robot robot) {
-        return repository.save(Robot.of(robot));
+        Robot createdRobot = repository.save(Robot.of(robot));
+
+        eventProducer.publishRobotCreatedEvent(createdRobot);
+
+        return createdRobot;
     }
 
     /**
@@ -51,7 +62,11 @@ public class RobotServiceImpl implements RobotService {
 
         Robot robot = get(id);
 
-        return repository.save(robot.update(attributes));
+        Robot updatedRobot = repository.save(robot.update(attributes));
+
+        eventProducer.publishRobotUpdatedEvent(updatedRobot, robot.getAttributes(), attributes);
+
+        return updatedRobot;
     }
 
     /**
