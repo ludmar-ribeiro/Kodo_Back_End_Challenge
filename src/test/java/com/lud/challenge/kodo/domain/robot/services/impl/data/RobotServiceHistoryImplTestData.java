@@ -1,6 +1,7 @@
 package com.lud.challenge.kodo.domain.robot.services.impl.data;
 
 import com.lud.challenge.kodo.domain.robot.entities.MutableRobot;
+import com.lud.challenge.kodo.domain.robot.entities.MutableRobotHistory;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,8 +15,8 @@ import java.util.List;
 @ConfigurationProperties("test-data")
 @Getter
 @Setter
-public class RobotServiceImplTestData {
+public class RobotServiceHistoryImplTestData {
     private MutableRobot robotCreationTestInput;
     private List<MutableRobot> robotUpdateTestInput;
-    private List<MutableRobot> robotGetAllTestStorage;
+    private List<MutableRobotHistory> robotGetHistoryTestStorage;
 }

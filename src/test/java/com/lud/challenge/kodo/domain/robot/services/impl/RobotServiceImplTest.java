@@ -8,9 +8,11 @@ import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;
 import com.lud.challenge.kodo.domain.robot.services.impl.data.RobotServiceImplTestData;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -24,6 +26,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
 /**
@@ -48,6 +51,11 @@ public class RobotServiceImplTest {
 
     @Autowired
     RobotServiceImplTestData testData;
+
+    @BeforeEach
+    public void beforeEach() {
+        reset(repository);
+    }
 
     /**
      * Given a robot with name and attributes
