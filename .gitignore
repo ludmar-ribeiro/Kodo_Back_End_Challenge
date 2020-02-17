@@ -180,3 +180,6 @@ gradle-app.setting
 
 ### Mergetool backup files
 *.orig
+
+# Ignore Gradle build output directory
+build
