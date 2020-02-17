@@ -109,7 +109,7 @@ public class RobotServiceImplTest {
         assertNotNull(captor.getValue());
         Robot output = captor.getValue();
 
-        verify(eventProducer).publishRobotCreatedEvent(captor.capture());
+        verify(eventProducer).publishRobotCreationEvent(captor.capture());
 
         Robot createdRobotEvent = captor.getValue();
 
@@ -191,7 +191,7 @@ public class RobotServiceImplTest {
         assertNotNull(captor.getValue());
         Robot output = captor.getValue();
 
-        verify(eventProducer).publishRobotUpdatedEvent(
+        verify(eventProducer).publishRobotUpdateEvent(
                 captor.capture(),
                 oldAttributesCaptor.capture(),
                 newAttributesCaptor.capture()

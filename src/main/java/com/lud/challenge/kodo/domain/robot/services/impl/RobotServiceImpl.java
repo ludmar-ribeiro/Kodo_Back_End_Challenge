@@ -44,7 +44,7 @@ public class RobotServiceImpl implements RobotService {
     public Robot create(Robot robot) {
         Robot createdRobot = repository.save(Robot.of(robot));
 
-        eventProducer.publishRobotCreatedEvent(createdRobot);
+        eventProducer.publishRobotCreationEvent(createdRobot);
 
         return createdRobot;
     }
@@ -64,7 +64,7 @@ public class RobotServiceImpl implements RobotService {
 
         Robot updatedRobot = repository.save(robot.update(attributes));
 
-        eventProducer.publishRobotUpdatedEvent(updatedRobot, robot.getAttributes(), attributes);
+        eventProducer.publishRobotUpdateEvent(updatedRobot, robot.getAttributes(), attributes);
 
         return updatedRobot;
     }

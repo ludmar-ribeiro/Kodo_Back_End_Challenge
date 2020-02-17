@@ -1,6 +1,5 @@
 package com.lud.challenge.kodo.domain.robot.entities;
 
-import com.lud.challenge.kodo.domain.robot.RobotHistoryType;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

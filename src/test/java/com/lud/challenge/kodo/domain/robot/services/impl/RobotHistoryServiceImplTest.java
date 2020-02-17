@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
-import com.lud.challenge.kodo.domain.robot.RobotHistoryType;
+import com.lud.challenge.kodo.domain.robot.entities.RobotHistoryType;
 import com.lud.challenge.kodo.domain.robot.entities.MutableRobotHistory;
 import com.lud.challenge.kodo.domain.robot.entities.RobotHistory;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotHistoryRepository;

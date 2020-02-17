@@ -17,7 +17,7 @@ public interface RobotEventProducer {
      *
      * @param robot
      */
-    void publishRobotCreatedEvent(Robot robot);
+    void publishRobotCreationEvent(Robot robot);
 
     /**
      * Publishes a robot update event
@@ -26,5 +26,5 @@ public interface RobotEventProducer {
      * @param oldAttributes
      * @param newAttributes
      */
-    void publishRobotUpdatedEvent(Robot robot, Map<String, Object> oldAttributes, Map<String, Object> newAttributes);
+    void publishRobotUpdateEvent(Robot robot, Map<String, Object> oldAttributes, Map<String, Object> newAttributes);
 }
