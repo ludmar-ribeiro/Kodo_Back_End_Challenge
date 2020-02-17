@@ -1,7 +1,7 @@
 package com.lud.challenge.kodo.domain.robot.services;
 
-import com.lud.challenge.kodo.entities.RobotHistoryType;
-import com.lud.challenge.kodo.entities.RobotHistory;
+import com.lud.challenge.kodo.commons.entities.RobotHistoryType;
+import com.lud.challenge.kodo.commons.entities.RobotHistory;
 
 import java.time.LocalDateTime;
 import java.util.List;

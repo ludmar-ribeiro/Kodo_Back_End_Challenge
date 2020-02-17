@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
-import com.lud.challenge.kodo.entities.Robot;
+import com.lud.challenge.kodo.commons.entities.Robot;
 import com.lud.challenge.kodo.domain.robot.events.producers.RobotEventProducer;
 import com.lud.challenge.kodo.domain.robot.exceptions.RobotNotFoundException;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;

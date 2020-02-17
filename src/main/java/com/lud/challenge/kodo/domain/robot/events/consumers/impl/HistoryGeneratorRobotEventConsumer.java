@@ -1,7 +1,7 @@
 package com.lud.challenge.kodo.domain.robot.events.consumers.impl;
 
-import com.lud.challenge.kodo.entities.RobotHistoryType;
-import com.lud.challenge.kodo.entities.Robot;
+import com.lud.challenge.kodo.commons.entities.RobotHistoryType;
+import com.lud.challenge.kodo.commons.entities.Robot;
 import com.lud.challenge.kodo.domain.robot.events.consumers.RobotEventConsumer;
 import com.lud.challenge.kodo.domain.robot.services.RobotHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;

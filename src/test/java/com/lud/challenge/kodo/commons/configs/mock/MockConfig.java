@@ -1,4 +1,4 @@
-package com.lud.challenge.kodo.configs.mock;
+package com.lud.challenge.kodo.commons.configs.mock;
 
 import com.lud.challenge.kodo.domain.robot.repositories.RobotHistoryRepository;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;

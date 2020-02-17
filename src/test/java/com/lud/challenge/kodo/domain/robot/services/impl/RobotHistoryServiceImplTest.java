@@ -1,8 +1,8 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
-import com.lud.challenge.kodo.entities.RobotHistoryType;
-import com.lud.challenge.kodo.entities.MutableRobotHistory;
-import com.lud.challenge.kodo.entities.RobotHistory;
+import com.lud.challenge.kodo.commons.entities.RobotHistoryType;
+import com.lud.challenge.kodo.commons.entities.MutableRobotHistory;
+import com.lud.challenge.kodo.commons.entities.RobotHistory;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotHistoryRepository;
 import com.lud.challenge.kodo.domain.robot.services.RobotHistoryService;
 import com.lud.challenge.kodo.domain.robot.services.impl.data.RobotServiceHistoryImplTestData;

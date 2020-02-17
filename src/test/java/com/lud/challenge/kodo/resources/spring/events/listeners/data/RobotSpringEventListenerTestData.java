@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.resources.spring.events.listeners.data;
 
-import com.lud.challenge.kodo.entities.MutableRobot;
+import com.lud.challenge.kodo.commons.entities.MutableRobot;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
