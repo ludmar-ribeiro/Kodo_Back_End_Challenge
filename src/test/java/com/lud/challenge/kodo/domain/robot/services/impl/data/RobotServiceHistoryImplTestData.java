@@ -1,7 +1,7 @@
 package com.lud.challenge.kodo.domain.robot.services.impl.data;
 
-import com.lud.challenge.kodo.domain.robot.entities.MutableRobot;
-import com.lud.challenge.kodo.domain.robot.entities.MutableRobotHistory;
+import com.lud.challenge.kodo.entities.MutableRobot;
+import com.lud.challenge.kodo.entities.MutableRobotHistory;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package com.lud.challenge.kodo.domain.robot.events.consumers.impl.data;
+package com.lud.challenge.kodo.resources.spring.events.listeners.data;
 
 import com.lud.challenge.kodo.entities.MutableRobot;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.List;
 @ConfigurationProperties("test-data")
 @Getter
 @Setter
-public class HistoryGeneratorRobotEventConsumerTestData {
+public class RobotSpringEventListenerTestData {
     private MutableRobot robotCreationTestInput;
     private List<MutableRobot> robotUpdateTestInput;
 }

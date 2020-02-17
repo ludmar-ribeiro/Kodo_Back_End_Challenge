@@ -1,4 +1,4 @@
-package com.lud.challenge.kodo.domain.robot.entities;
+package com.lud.challenge.kodo.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

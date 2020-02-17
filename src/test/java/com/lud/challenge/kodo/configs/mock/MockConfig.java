@@ -1,8 +1,8 @@
-package com.lud.challenge.kodo.domain.robot.configs.mock;
+package com.lud.challenge.kodo.configs.mock;
 
-import com.lud.challenge.kodo.domain.robot.events.producers.RobotEventProducer;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotHistoryRepository;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -28,5 +28,5 @@ public class MockConfig {
 
     @Bean
     @Primary
-    public RobotEventProducer robotEventProducer() { return mock(RobotEventProducer.class); }
+    public ApplicationEventPublisher applicationEventPublisher() { return mock(ApplicationEventPublisher.class); }
 }

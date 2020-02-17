@@ -1,12 +1,12 @@
 package com.lud.challenge.kodo.domain.robot.events.consumers.impl;
 
-import com.lud.challenge.kodo.domain.robot.entities.Robot;
-import com.lud.challenge.kodo.domain.robot.entities.RobotHistoryType;
+import com.lud.challenge.kodo.entities.Robot;
+import com.lud.challenge.kodo.entities.RobotHistoryType;
 import com.lud.challenge.kodo.domain.robot.events.consumers.RobotEventConsumer;
 import com.lud.challenge.kodo.domain.robot.events.consumers.impl.data.HistoryGeneratorRobotEventConsumerTestData;
 import com.lud.challenge.kodo.domain.robot.services.RobotHistoryService;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,8 +40,8 @@ public class HistoryGeneratorRobotEventConsumerTest {
     @Autowired
     private HistoryGeneratorRobotEventConsumerTestData data;
 
-    @BeforeEach
-    public void beforeEach() {
+    @Before
+    public void before() {
         reset(service);
     }
 

@@ -1,15 +1,15 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
 
-import com.lud.challenge.kodo.domain.robot.entities.MutableRobot;
-import com.lud.challenge.kodo.domain.robot.entities.Robot;
+import com.lud.challenge.kodo.entities.MutableRobot;
+import com.lud.challenge.kodo.entities.Robot;
 import com.lud.challenge.kodo.domain.robot.events.producers.RobotEventProducer;
 import com.lud.challenge.kodo.domain.robot.exceptions.RobotNotFoundException;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotRepository;
 import com.lud.challenge.kodo.domain.robot.services.impl.data.RobotServiceImplTestData;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -34,7 +34,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Lud Ribeiro
  */
-@ActiveProfiles("test")
+@ActiveProfiles({"test","service-test"})
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource("classpath:robot-service-test.properties")
@@ -55,8 +55,8 @@ public class RobotServiceImplTest {
     @Autowired
     RobotServiceImplTestData testData;
 
-    @BeforeEach
-    public void beforeEach() {
+    @Before
+    public void before() {
         reset(repository, eventProducer);
     }
 

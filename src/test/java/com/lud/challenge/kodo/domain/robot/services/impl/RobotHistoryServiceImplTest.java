@@ -1,13 +1,13 @@
 package com.lud.challenge.kodo.domain.robot.services.impl;
 
-import com.lud.challenge.kodo.domain.robot.entities.RobotHistoryType;
-import com.lud.challenge.kodo.domain.robot.entities.MutableRobotHistory;
-import com.lud.challenge.kodo.domain.robot.entities.RobotHistory;
+import com.lud.challenge.kodo.entities.RobotHistoryType;
+import com.lud.challenge.kodo.entities.MutableRobotHistory;
+import com.lud.challenge.kodo.entities.RobotHistory;
 import com.lud.challenge.kodo.domain.robot.repositories.RobotHistoryRepository;
 import com.lud.challenge.kodo.domain.robot.services.RobotHistoryService;
 import com.lud.challenge.kodo.domain.robot.services.impl.data.RobotServiceHistoryImplTestData;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +47,8 @@ public class RobotHistoryServiceImplTest {
     @Autowired
     private RobotServiceHistoryImplTestData data;
 
-    @BeforeEach
-    public void beforeEach() {
-        reset(repository);
-    }
+    @Before
+    public void before() { reset(repository); }
 
     /**
      * Given some robot creation info

@@ -1,6 +1,6 @@
 package com.lud.challenge.kodo.domain.robot.repositories;
 
-import com.lud.challenge.kodo.domain.robot.entities.Robot;
+import com.lud.challenge.kodo.entities.Robot;
 
 import java.util.List;
 import java.util.UUID;
